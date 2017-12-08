@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/hornet"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+
+    tools:context="com.example.kermenjy.quiztrivia.QuizTrivia">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="40dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/score_text"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/score"
+            android:layout_alignParentRight="true"
+            android:text="0"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="Which is alive"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/question"/>
+        
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bird"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/choice1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Door"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/choice2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rock"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/choice3"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quit"
+        android:background="#B71C1C"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/quit"/>
+</LinearLayout>
+
+
+
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:orientation="vertical"-->
+<!--tools:context="com.example.kermenjy.quiztrivia.QuizTrivia">-->
+
+<!--<RelativeLayout-->
+    <!--android:layout_width="368dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="8dp"-->
+    <!--android:layout_marginBottom="40dp"-->
+    <!--tools:layout_editor_absoluteY="0dp"-->
+    <!--tools:layout_editor_absoluteX="8dp">-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Score"-->
+        <!--android:textSize="20sp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:id="@+id/score_text"/>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/score"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="0"-->
+        <!--android:textSize="20sp"/>-->
+<!--</RelativeLayout>-->
+
+
+<!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="70dp"-->
+    <!--android:text="Which is alive"-->
+    <!--android:textSize="20sp"-->
+    <!--android:padding="8dp"-->
+    <!--android:layout_marginBottom="40dp"-->
+    <!--android:id="@+id/question"/>-->
+<!--&lt;!&ndash;app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;app:layout_constraintLeft_toLeftOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;app:layout_constraintRight_toRightOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
+
+<!--</android.support.constraint.ConstraintLayout>-->

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:background="@drawable/hornet"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    android:layout_gravity="center"
+    android:layout_centerInParent="true"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+
+    tools:context="com.example.kermenjy.quiztrivia.QuizTrivia"
+    android:weightSum="1">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="40dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:background="#B71C1C"
+        android:padding="8dp"
+        android:text="Restart"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:background="#B71C1C"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Share"
+        android:textColor="#fff"
+        tools:layout_editor_absoluteX="500dp"
+        tools:layout_editor_absoluteY="701dp" />
+
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:background="#B71C1C"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Quit"
+        android:textColor="#fff" />
+</LinearLayout>
