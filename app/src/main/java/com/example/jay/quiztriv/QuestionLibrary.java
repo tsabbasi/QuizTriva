@@ -1,23 +1,54 @@
 package com.example.jay.quiztriv;
 
-import java.io.File;
-import java.io.FileReader;
+import android.os.AsyncTask;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+
 import java.util.HashMap;
 import java.util.*;
 import java.io.BufferedReader;
 
-public class QuestionLibrary {
+public class QuestionLibrary extends AsyncTask {
 
-    private String FILENAME = "C:\\Users\\Jay";
+     //"C:\\Users\\Jay\\quizTriv.txt";
     private String QUESTION = "Question";
     private String ANSWER = "Answer";
     private String QA = "QA";
-    private String JSONFILE = convJSON(FILENAME);
-    private ArrayList<HashMap<String, String>> JSONARRAY = getJSON(JSONFILE);
+    private String JSONFILE;
+    private ArrayList<HashMap<String, String>> JSONARRAY;
+
+    @Override
+    protected ArrayList<HashMap<String, String>> doInBackground(Object... urls) {
+        StringBuilder toJSON = new StringBuilder();
+        //File file = new File(filename);
+        String sURL = (String) urls[0];
+
+        try {
+            InputStream url = new URL(sURL).openStream();
+            System.out.println("Made it here 2");
+            BufferedReader br = new BufferedReader(new InputStreamReader(url, Charset.forName("UTF-8")));
+            String line;
+            System.out.println("Made it here too");
+            while ((line = br.readLine()) != null) {
+                toJSON.append(line);
+            }
+            br.close();
+            url.close();
+            System.out.println(toJSON.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        JSONARRAY = getJSON(toJSON.toString());
+        return JSONARRAY;
+    }
 
     private String mQuestions [] = {
             "What is a Thread?",
@@ -43,36 +74,39 @@ public class QuestionLibrary {
             "Virtual memory creates an illusion that each user has one or more contiguous address spaces, each beginning at address zero",
             "Thrashing is a situation when the performance of a computer degrades or collapses. "};
 
-    private String convJSON(String filename){ //Change File to JSON String
-//        File sdcard = Environment.getExternalStorageDirectory();
-        StringBuilder toJSON = new StringBuilder();
-        File file = new File(filename);
-        System.out.println("Made it here");
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            System.out.println("Made it here too");
-            while ((line = br.readLine()) != null) {
-                toJSON.append(line);
-            }
-            br.close();
-            return toJSON.toString();
-        } catch (IOException e) {
 
-            e.printStackTrace();
-            return null;
-
-        }
-
-    }
+//    private String convJSON(String filename) { //Change File to JSON String
+////        File sdcard = Environment.getExternalStorageDirectory();
+//        StringBuilder toJSON = new StringBuilder();
+//        //File file = new File(filename);
+//
+//
+//        try {
+//            InputStream url = new URL(filename).openStream();
+//            System.out.println("Made it here 2");
+//            BufferedReader br = new BufferedReader(new InputStreamReader(url, Charset.forName("UTF-8")));
+//            String line;
+//            System.out.println("Made it here too");
+//            while ((line = br.readLine()) != null) {
+//                toJSON.append(line);
+//            }
+//            br.close();
+//            url.close();
+//            System.out.println(toJSON.toString());
+//            return toJSON.toString();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     private ArrayList<HashMap<String, String>> getJSON(String json) { //Get Array From JSON
         try {
 
             ArrayList<HashMap<String, String>> questionList = new ArrayList<HashMap<String, String>>();
             JSONObject jsonObj = new JSONObject(json);
-
+            System.out.println(jsonObj);
 
             JSONArray qas = jsonObj.getJSONArray(QA);
 
@@ -94,11 +128,13 @@ public class QuestionLibrary {
 
                 questionList.add(qsas);
             }
+            System.out.println("We got here boi");
             return questionList;
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
+
     }
 
 
@@ -125,12 +161,13 @@ public class QuestionLibrary {
 
     public String getCorrectAnswers(int a){
         String answer = JSONARRAY.get(a).get(ANSWER);
+        System.out.println(JSONARRAY.get(a).get(QUESTION));
+        System.out.println(answer);
         return answer;
     }
 
     public int getMQLength(){
         return JSONARRAY.size();
     }
-
 
 }

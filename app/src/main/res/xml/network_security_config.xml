@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-
-</resources>
+<network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <domain-config>
+        <domain includeSubdomains="true">http://schemas.android.com/apk/res/android</domain>
+        <trust-anchors>
+            <certificates src="@xml/network_security_config"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

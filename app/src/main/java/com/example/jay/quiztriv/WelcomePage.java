@@ -24,7 +24,7 @@ public class WelcomePage extends AppCompatActivity {
             public void onClick(View view){
                 Intent i = new Intent(WelcomePage.this, QuizTrivia.class);
                 startActivity(i);
-                //finish();
+                finish();
             }
         });
     }

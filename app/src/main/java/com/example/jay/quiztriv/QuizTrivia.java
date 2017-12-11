@@ -8,10 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class QuizTrivia extends AppCompatActivity {
 
 
-    private QuestionLibrary mQuestionLibrary = new QuestionLibrary();
+    private QuestionLibrary mQuestionLibrary= new QuestionLibrary();
 
     private TextView mScoreView;
     private TextView mQuestionView;
@@ -23,13 +26,22 @@ public class QuizTrivia extends AppCompatActivity {
     private String mAnswer;
     private int mScore=0;
     private int mQuestionNumber = 0;
+    private String[] FILENAME = {"https://gist.githubusercontent.com/JayDavi/1d7b3be563ed8da85fbd6bbd6d34054a/raw/f2d086ff343d8f313d72107af5787ea9bc967e30/gistfile1.txt"};
+
+    public QuizTrivia() throws URISyntaxException, IOException {
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_trivia);
-
+        mQuestionLibrary.execute(FILENAME);
+        int j = 0;
+        for(int i = 0; i<= 700000000;i++){
+            j++;
+        }
+//        mQuestionLibrary = new QuestionLibrary();
         System.out.println("made it 1");
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestionView = (TextView)findViewById(R.id.question);
@@ -46,7 +58,7 @@ public class QuizTrivia extends AppCompatActivity {
 
             public void onClick(View view){
 
-                if(mButtonChoice1.getText() == mAnswer){
+                if(mButtonChoice1.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
@@ -65,8 +77,8 @@ public class QuizTrivia extends AppCompatActivity {
         mButtonChoice2.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
-
-                if(mButtonChoice2.getText() == mAnswer){
+                System.out.println(mButtonChoice2.getText());
+                if(mButtonChoice2.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
@@ -86,7 +98,7 @@ public class QuizTrivia extends AppCompatActivity {
 
             public void onClick(View view){
 
-                if(mButtonChoice3.getText() == mAnswer){
+                if(mButtonChoice3.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
