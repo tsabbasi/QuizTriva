@@ -120,28 +120,34 @@ public class QuizTrivia extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
 
 
 
-    private void updateQuestion(){
+    private void updateQuestion() {
+        if (mQuestionNumber < mQuestionLibrary.getMQLength()) {
+
             mQuestionView.setText(mQuestionLibrary.getQuestion(mQuestionNumber));
             mButtonChoice1.setText(mQuestionLibrary.getChoice1(mQuestionNumber));
             mButtonChoice2.setText(mQuestionLibrary.getChoice2(mQuestionNumber));
             mButtonChoice3.setText(mQuestionLibrary.getChoice3(mQuestionNumber));
 
             mAnswer = mQuestionLibrary.getCorrectAnswers(mQuestionNumber);
+
+            System.out.println(mQuestionNumber);
             mQuestionNumber++;
 
-            if(mQuestionNumber > mQuestionLibrary.getMQLength()){
-                Intent i = new Intent(QuizTrivia.this, EndPage.class);
-                startActivity(i);
-                finish();
-            }
-
+            System.out.println(mQuestionLibrary.getMQLength());
 
         }
+        else{
+            Intent i = new Intent(QuizTrivia.this, EndPage.class);
+            startActivity(i);
+            finish();
+        }
+    }
 
         private void updateScore(int point){
             mScoreView.setText("" + mScore);
