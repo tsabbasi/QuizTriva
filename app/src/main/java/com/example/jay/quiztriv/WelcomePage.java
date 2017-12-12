@@ -16,7 +16,7 @@ public class WelcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
-
+        https://github.com/JayDavi/QuizTriva.git
         start = (Button)findViewById(R.id.welcome);
 
         start.setOnClickListener(new View.OnClickListener(){
