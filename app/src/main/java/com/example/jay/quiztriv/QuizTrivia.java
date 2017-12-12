@@ -50,6 +50,8 @@ public class QuizTrivia extends AppCompatActivity {
 //        System.out.println("made it 1");
         db = openOrCreateDatabase("MyDatabase", MODE_PRIVATE, null);
 
+        db.execSQL("drop table if exists MyTable;");
+
         db.execSQL("Create table if not exists MyTable (Question text, UserChoice text, CorrectAnswer text);");
 //        db.execSQL("Insert into MyTable values (" + mQuestion + "," + mButtonChoice2.getText().toString() + "," + mAnswer + "); ");
 
@@ -71,12 +73,12 @@ public class QuizTrivia extends AppCompatActivity {
         mButtonChoice1.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
-                userChoice = (String) mButtonChoice1.getText();
+                userChoice = mButtonChoice1.getText().toString();
 
                 if(userChoice.equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
+                    db.execSQL("Insert into MyTable values (" + "'" + mQuestion + "'" + ',' + "'" + userChoice + "'" + ',' + "'" + mAnswer + "'" + "); ");
                     updateQuestion();
                     Toast.makeText(QuizTrivia.this, "CORRECT", Toast.LENGTH_SHORT).show();
 
@@ -95,9 +97,9 @@ public class QuizTrivia extends AppCompatActivity {
 
 
             public void onClick(View view){
-                userChoice = (String) mButtonChoice2.getText();
+                userChoice = mButtonChoice2.getText().toString();
 
-                db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
+                db.execSQL("Insert into MyTable values (" + "'" + mQuestion + "'" + ',' + "'" + userChoice + "'" + ',' + "'" + mAnswer + "'" + "); ");
 
 //                System.out.println(mButtonChoice2.getText());
                 if(userChoice.equals(mAnswer)){
@@ -119,9 +121,9 @@ public class QuizTrivia extends AppCompatActivity {
         mButtonChoice3.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
-                userChoice = (String) mButtonChoice3.getText();
+                userChoice = mButtonChoice3.getText().toString();
 
-                db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
+                db.execSQL("Insert into MyTable values (" + "'" + mQuestion + "'" + ',' + "'" + userChoice + "'" + ',' + "'" + mAnswer + "'" + "); ");
 
                 if(userChoice.equals(mAnswer)){
                     mScore = mScore + 1;

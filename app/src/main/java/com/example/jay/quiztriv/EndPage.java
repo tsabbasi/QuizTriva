@@ -57,7 +57,7 @@ public class EndPage extends AppCompatActivity {
     public void ShowRecords() {
 
         Cursor c;
-        int temp;
+        String temp;
         String data;
         data = "";
 
@@ -66,15 +66,17 @@ public class EndPage extends AppCompatActivity {
         c.moveToFirst();
 
         for (int i = 0; c.moveToPosition(i); i++) {
-            temp = c.getInt(0); // column index = 0 i.e. question
-            data += Integer.toString(temp);
-            temp = c.getInt(1); // column index = 1 i.e. user choice
-            data += "       " + Integer.toString(temp) + "\n";
-            temp = c.getInt(2); // column index = 2 i.e. correct answer
-            data += "       " + Integer.toString(temp) + "\n";
+            data += "Question: ";
+            temp = c.getString(0); // column index = 0 i.e. question
+            data += temp + "\n";
+            temp = c.getString(1); // column index = 1 i.e. user choice
+            data += "User's Choice: " + temp + "\n";
+            temp = c.getString(2); // column index = 2 i.e. correct answer
+            data += "Correct Answer: " + temp + "\n";
+            data += "=====================================\n";
         }
 
-        ((TextView)findViewById(R.id.show_results)).setText(data);
+        ((TextView)findViewById(R.id.results)).setText(data);
 
     }
 
