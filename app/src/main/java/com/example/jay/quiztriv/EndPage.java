@@ -1,19 +1,21 @@
 package com.example.jay.quiztriv;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import com.example.jay.quiztriv.QuizTrivia;
 
 //import com.example.kermenjy.quiztrivia.R;
 
 public class EndPage extends AppCompatActivity {
 
-
     private Button restart;
     private Button quit;
-    private Button shareScore;
+    private Button show_results;
 
 
     @Override
@@ -23,7 +25,7 @@ public class EndPage extends AppCompatActivity {
 
         restart = (Button)findViewById(R.id.restart);
         quit = (Button)findViewById(R.id.quit);
-        shareScore = (Button)findViewById(R.id.share);
+        show_results = (Button)findViewById(R.id.show_results);
 
 
         restart.setOnClickListener(new View.OnClickListener(){
@@ -43,5 +45,37 @@ public class EndPage extends AppCompatActivity {
             }
         });
 
+        show_results.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View view){
+                ShowRecords();
+            }
+        });
+
     }
+
+    public void ShowRecords() {
+
+        Cursor c;
+        int temp;
+        String data;
+        data = "";
+
+        c = QuizTrivia.db.rawQuery("Select * from MyTable;", null);
+
+        c.moveToFirst();
+
+        for (int i = 0; c.moveToPosition(i); i++) {
+            temp = c.getInt(0); // column index = 0 i.e. question
+            data += Integer.toString(temp);
+            temp = c.getInt(1); // column index = 1 i.e. user choice
+            data += "       " + Integer.toString(temp) + "\n";
+            temp = c.getInt(2); // column index = 2 i.e. correct answer
+            data += "       " + Integer.toString(temp) + "\n";
+        }
+
+        ((TextView)findViewById(R.id.show_results)).setText(data);
+
+    }
+
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuizTriv.iml" filepath="$PROJECT_DIR$/QuizTriv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuizTriva.iml" filepath="$PROJECT_DIR$/QuizTriva.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

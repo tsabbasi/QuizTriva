@@ -1,5 +1,6 @@
 package com.example.jay.quiztriv;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import java.net.URISyntaxException;
 
 public class QuizTrivia extends AppCompatActivity {
 
+    // Global Variables
+    public static SQLiteDatabase db;
 
     private QuestionLibrary mQuestionLibrary= new QuestionLibrary();
 
@@ -23,10 +26,12 @@ public class QuizTrivia extends AppCompatActivity {
     private Button mButtonChoice3;
     private Button quitButton;
 
-    private String mAnswer;
+    public String mQuestion;
+    public String mAnswer;
+    public String userChoice;
     private int mScore=0;
     private int mQuestionNumber = 0;
-    private String[] FILENAME = {"https://gist.githubusercontent.com/JayDavi/1d7b3be563ed8da85fbd6bbd6d34054a/raw/f2d086ff343d8f313d72107af5787ea9bc967e30/gistfile1.txt"};
+    private String FILENAME = "https://gist.githubusercontent.com/JayDavi/1d7b3be563ed8da85fbd6bbd6d34054a/raw/f2d086ff343d8f313d72107af5787ea9bc967e30/gistfile1.txt";
 
     public QuizTrivia() throws URISyntaxException, IOException {
     }
@@ -37,18 +42,27 @@ public class QuizTrivia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_trivia);
         mQuestionLibrary.execute(FILENAME);
+
         int j = 0;
         for(int i = 0; i<= 700000000;i++){
             j++;
         }
+//        System.out.println("made it 1");
+        db = openOrCreateDatabase("MyDatabase", MODE_PRIVATE, null);
+
+        db.execSQL("Create table if not exists MyTable (Question text, UserChoice text, CorrectAnswer text);");
+//        db.execSQL("Insert into MyTable values (" + mQuestion + "," + mButtonChoice2.getText().toString() + "," + mAnswer + "); ");
+
+//        System.out.println("made it 2");
+
 //        mQuestionLibrary = new QuestionLibrary();
-        System.out.println("made it 1");
-        mScoreView = (TextView)findViewById(R.id.score);
-        mQuestionView = (TextView)findViewById(R.id.question);
-        mButtonChoice1 = (Button)findViewById(R.id.choice1);
-        mButtonChoice2 = (Button)findViewById(R.id.choice2);
-        mButtonChoice3 = (Button)findViewById(R.id.choice3);
-        quitButton = (Button)findViewById(R.id.quit);
+
+        mScoreView = findViewById(R.id.score);
+        mQuestionView = findViewById(R.id.question);
+        mButtonChoice1 = findViewById(R.id.choice1);
+        mButtonChoice2 = findViewById(R.id.choice2);
+        mButtonChoice3 = findViewById(R.id.choice3);
+        quitButton = findViewById(R.id.quit);
 
         updateQuestion();
 
@@ -57,10 +71,12 @@ public class QuizTrivia extends AppCompatActivity {
         mButtonChoice1.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
+                userChoice = (String) mButtonChoice1.getText();
 
-                if(mButtonChoice1.getText().equals(mAnswer)){
+                if(userChoice.equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
+                    db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
                     updateQuestion();
                     Toast.makeText(QuizTrivia.this, "CORRECT", Toast.LENGTH_SHORT).show();
 
@@ -68,6 +84,7 @@ public class QuizTrivia extends AppCompatActivity {
                     Toast.makeText(QuizTrivia.this, "YOU'RE WRONG BOI!!!!!!!", Toast.LENGTH_SHORT).show();
                     updateQuestion();
                 }
+
             }
         });
         //End of Button Listener for Button 1
@@ -76,9 +93,14 @@ public class QuizTrivia extends AppCompatActivity {
 
         mButtonChoice2.setOnClickListener(new View.OnClickListener(){
 
+
             public void onClick(View view){
-                System.out.println(mButtonChoice2.getText());
-                if(mButtonChoice2.getText().equals(mAnswer)){
+                userChoice = (String) mButtonChoice2.getText();
+
+                db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
+
+//                System.out.println(mButtonChoice2.getText());
+                if(userChoice.equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
@@ -97,8 +119,11 @@ public class QuizTrivia extends AppCompatActivity {
         mButtonChoice3.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
+                userChoice = (String) mButtonChoice3.getText();
 
-                if(mButtonChoice3.getText().equals(mAnswer)){
+                db.execSQL("Insert into MyTable values (" + mQuestion + "," + userChoice + "," + mAnswer + "); ");
+
+                if(userChoice.equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
@@ -129,7 +154,9 @@ public class QuizTrivia extends AppCompatActivity {
     private void updateQuestion() {
         if (mQuestionNumber < mQuestionLibrary.getMQLength()) {
 
-            mQuestionView.setText(mQuestionLibrary.getQuestion(mQuestionNumber));
+            mQuestion = mQuestionLibrary.getQuestion(mQuestionNumber);
+
+            mQuestionView.setText(mQuestion);
             mButtonChoice1.setText(mQuestionLibrary.getChoice1(mQuestionNumber));
             mButtonChoice2.setText(mQuestionLibrary.getChoice2(mQuestionNumber));
             mButtonChoice3.setText(mQuestionLibrary.getChoice3(mQuestionNumber));
@@ -142,6 +169,7 @@ public class QuizTrivia extends AppCompatActivity {
             System.out.println(mQuestionLibrary.getMQLength());
 
         }
+
         else{
             Intent i = new Intent(QuizTrivia.this, EndPage.class);
             startActivity(i);

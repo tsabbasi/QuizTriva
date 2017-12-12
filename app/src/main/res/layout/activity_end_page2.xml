@@ -18,7 +18,7 @@
     android:paddingTop="16dp"
     android:orientation="vertical"
 
-    tools:context="com.example.kermenjy.quiztrivia.QuizTrivia"
+    tools:context="com.example.jay.quiztriv.QuizTrivia"
     android:weightSum="1">
 
 
@@ -43,13 +43,13 @@
         android:textColor="#fff" />
 
     <Button
-        android:id="@+id/share"
+        android:id="@+id/show_results"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:background="#B71C1C"
         android:padding="10dp"
-        android:layout_marginTop="30dp"
-        android:text="Share"
+        android:text="Show Results"
         android:textColor="#fff"
         tools:layout_editor_absoluteX="500dp"
         tools:layout_editor_absoluteY="701dp" />
@@ -63,4 +63,13 @@
         android:layout_marginTop="30dp"
         android:text="Quit"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Result Here" />
 </LinearLayout>
