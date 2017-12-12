@@ -50,14 +50,14 @@ public class QuestionLibrary extends AsyncTask {
         return JSONARRAY;
     }
 
-    private String mQuestions [] = {
-            "What is a Thread?",
-            "What is deadlock?",
-            "What are the necessary conditions for deadlock?",
-            "What is Virtual Memory?",
-            "What is Thrashing?",
-    };
-
+//    private String mQuestions [] = {
+//            "What is a Thread?",
+//            "What is deadlock?",
+//            "What are the necessary conditions for deadlock?",
+//            "What is Virtual Memory?",
+//            "What is Thrashing?",
+//    };
+//
     private String mChoices [] [] = {
             {"A thread is a single sequence stream within in a process.",
                     "No thread",
@@ -67,12 +67,12 @@ public class QuestionLibrary extends AsyncTask {
             {"The act of being unknown", "Virtual memory creates an illusion that each user has one or more contiguous address spaces, each beginning at address zero", "Not sure"},
             {"Thrashing is a situation when the performance of a computer increase.", "Thrashing is a situation when the performance of a computer degrades or collapses. ", "What are the key words"},
     };
-
-    private String mCorrectAnswers [] = {"A thread is a single sequence stream within in a process.",
-            "Deadlock is a situation when two or more processes wait for each other to finish and none of them ever finish",
-            "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
-            "Virtual memory creates an illusion that each user has one or more contiguous address spaces, each beginning at address zero",
-            "Thrashing is a situation when the performance of a computer degrades or collapses. "};
+//
+//    private String mCorrectAnswers [] = {"A thread is a single sequence stream within in a process.",
+//            "Deadlock is a situation when two or more processes wait for each other to finish and none of them ever finish",
+//            "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+//            "Virtual memory creates an illusion that each user has one or more contiguous address spaces, each beginning at address zero",
+//            "Thrashing is a situation when the performance of a computer degrades or collapses. "};
 
 
 
